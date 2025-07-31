@@ -8,147 +8,271 @@ export default function WelcomePage() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '20px'
+      padding: '20px',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
+      {/* Background decorations */}
+      <div style={{
+        position: 'absolute',
+        top: '-20%',
+        right: '-20%',
+        width: '400px',
+        height: '400px',
+        background: 'rgba(255, 255, 255, 0.1)',
+        borderRadius: '50%',
+        zIndex: 1
+      }} />
+      <div style={{
+        position: 'absolute',
+        bottom: '-30%',
+        left: '-30%',
+        width: '500px',
+        height: '500px',
+        background: 'rgba(255, 255, 255, 0.05)',
+        borderRadius: '50%',
+        zIndex: 1
+      }} />
+      
       <div style={{
         textAlign: 'center',
         color: 'white',
-        maxWidth: '600px'
+        maxWidth: '800px',
+        position: 'relative',
+        zIndex: 2
       }}>
         <div style={{
-          fontSize: '64px',
+          fontSize: '80px',
           marginBottom: '24px',
-          filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
+          filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))',
+          animation: 'pulse 2s ease-in-out infinite'
         }}>
           🐕
         </div>
         
         <h1 style={{
-          fontSize: '3rem',
+          fontSize: '3.5rem',
           marginBottom: '16px',
           fontWeight: '700',
-          textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+          textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+          background: 'linear-gradient(135deg, #fff 0%, #f0f0f0 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text'
         }}>
-          App de perros
+          Mascotas App
         </h1>
         
         <p style={{
-          fontSize: '1.25rem',
-          marginBottom: '32px',
+          fontSize: '1.4rem',
+          marginBottom: '40px',
           opacity: 0.9,
           lineHeight: 1.6,
           textShadow: '0 1px 2px rgba(0,0,0,0.2)'
         }}>
-          Gestiona registro de perros de manera fácil y organizada
+          Gestiona el registro de perros de manera fácil, organizada y segura
         </p>
         
+        {/* Quick Actions */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '16px',
+          marginBottom: '40px',
+          flexWrap: 'wrap'
+        }}>
+          <Link
+            to="/public"
+            style={{
+              background: 'rgba(255, 255, 255, 0.2)',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              color: 'white',
+              padding: '16px 32px',
+              borderRadius: '50px',
+              textDecoration: 'none',
+              fontSize: '16px',
+              fontWeight: '600',
+              transition: 'all 0.3s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              backdropFilter: 'blur(10px)'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.3)';
+              e.target.style.transform = 'translateY(-3px)';
+              e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = 'none';
+            }}
+          >
+            📊 Ver Dashboard Público
+          </Link>
+          
+          <div
+            style={{
+              background: 'rgba(255, 255, 255, 0.15)',
+              border: '2px solid rgba(255, 255, 255, 0.2)',
+              color: 'white',
+              padding: '16px 32px',
+              borderRadius: '50px',
+              fontSize: '16px',
+              fontWeight: '600',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              backdropFilter: 'blur(10px)',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.25)';
+              e.target.style.transform = 'translateY(-3px)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+              e.target.style.transform = 'translateY(0)';
+            }}
+            onClick={() => window.location.reload()}
+          >
+            🔐 Iniciar Sesión
+          </div>
+        </div>
+        
+        {/* Features Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
           gap: '24px',
           marginTop: '40px'
         }}>
           <div style={{
             background: 'rgba(255,255,255,0.1)',
-            padding: '24px',
-            borderRadius: '12px',
+            padding: '28px',
+            borderRadius: '16px',
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255,255,255,0.2)'
-          }}>
-            <div style={{ fontSize: '32px', marginBottom: '12px' }}>📝</div>
-            <h3 style={{ margin: '0 0 8px 0', fontSize: '18px' }}>Registro Fácil</h3>
-            <p style={{ margin: 0, fontSize: '14px', opacity: 0.9 }}>
-              Agrega mascotas con toda su información
+            border: '1px solid rgba(255,255,255,0.2)',
+            transition: 'all 0.3s ease',
+            cursor: 'pointer'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = 'translateY(-5px)';
+            e.target.style.background = 'rgba(255,255,255,0.15)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.background = 'rgba(255,255,255,0.1)';
+          }}
+          >
+            <div style={{ fontSize: '36px', marginBottom: '16px' }}>📝</div>
+            <h3 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: '600' }}>Registro Fácil</h3>
+            <p style={{ margin: 0, fontSize: '15px', opacity: 0.9, lineHeight: 1.5 }}>
+              Agrega mascotas con toda su información de manera rápida y sencilla
             </p>
           </div>
           
           <div style={{
             background: 'rgba(255,255,255,0.1)',
-            padding: '24px',
-            borderRadius: '12px',
+            padding: '28px',
+            borderRadius: '16px',
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255,255,255,0.2)'
-          }}>
-            <div style={{ fontSize: '32px', marginBottom: '12px' }}>🔍</div>
-            <h3 style={{ margin: '0 0 8px 0', fontSize: '18px' }}>Búsqueda Rápida</h3>
-            <p style={{ margin: 0, fontSize: '14px', opacity: 0.9 }}>
-              Encuentra perros por nombre, raza o ubicación
+            border: '1px solid rgba(255,255,255,0.2)',
+            transition: 'all 0.3s ease',
+            cursor: 'pointer'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = 'translateY(-5px)';
+            e.target.style.background = 'rgba(255,255,255,0.15)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.background = 'rgba(255,255,255,0.1)';
+          }}
+          >
+            <div style={{ fontSize: '36px', marginBottom: '16px' }}>🔍</div>
+            <h3 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: '600' }}>Búsqueda Rápida</h3>
+            <p style={{ margin: 0, fontSize: '15px', opacity: 0.9, lineHeight: 1.5 }}>
+              Encuentra perros por nombre, raza, dueño o ubicación de forma instantánea
             </p>
           </div>
           
           <div style={{
             background: 'rgba(255,255,255,0.1)',
-            padding: '24px',
-            borderRadius: '12px',
+            padding: '28px',
+            borderRadius: '16px',
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255,255,255,0.2)'
+            border: '1px solid rgba(255,255,255,0.2)',
+            transition: 'all 0.3s ease',
+            cursor: 'pointer'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = 'translateY(-5px)';
+            e.target.style.background = 'rgba(255,255,255,0.15)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.background = 'rgba(255,255,255,0.1)';
+          }}
+          >
+            <div style={{ fontSize: '36px', marginBottom: '16px' }}>📊</div>
+            <h3 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: '600' }}>Estadísticas</h3>
+            <p style={{ margin: 0, fontSize: '15px', opacity: 0.9, lineHeight: 1.5 }}>
+              Visualiza gráficos y estadísticas detalladas del registro canino
+            </p>
+          </div>
+          
+          <div style={{
+            background: 'rgba(255,255,255,0.1)',
+            padding: '28px',
+            borderRadius: '16px',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255,255,255,0.2)',
+            transition: 'all 0.3s ease',
+            cursor: 'pointer'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = 'translateY(-5px)';
+            e.target.style.background = 'rgba(255,255,255,0.15)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.background = 'rgba(255,255,255,0.1)';
+          }}
+          >
+            <div style={{ fontSize: '36px', marginBottom: '16px' }}>💾</div>
+            <h3 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: '600' }}>Almacenamiento Seguro</h3>
+            <p style={{ margin: 0, fontSize: '15px', opacity: 0.9, lineHeight: 1.5 }}>
+              Los datos están protegidos y sincronizados en tiempo real
+            </p>
+          </div>
+        </div>
+        
+        {/* Login reminder */}
+        <div style={{
+          marginTop: '40px',
+          padding: '20px',
+          background: 'rgba(255,255,255,0.1)',
+          borderRadius: '12px',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255,255,255,0.2)'
+        }}>
+          <p style={{
+            margin: '0 0 8px 0',
+            fontSize: '16px',
+            fontWeight: '500'
           }}>
-            <div style={{ fontSize: '32px', marginBottom: '12px' }}>💾</div>
-            <h3 style={{ margin: '0 0 8px 0', fontSize: '18px' }}>Almacenamiento Seguro</h3>
-            <p style={{ margin: 0, fontSize: '14px', opacity: 0.9 }}>
-              Los datos están protegidos y sincronizados
-            </p>
-          </div>
-
-          <Link
-            to="/public"
-            style={{
-              padding: '24px',
-              background: 'rgba(255,255,255,0.1)',
-              borderRadius: '12px',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255,255,255,0.2)',
-              cursor: 'pointer',
-              transition: 'background 0.3s',
-              textDecoration: 'none',
-              color: 'white',
-              display: 'block'
-            }}
-            onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
-            onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-          >
-            <div style={{ fontSize: '32px', marginBottom: '12px' }}>📊</div>
-            <h3 style={{ margin: '0 0 8px 0', fontSize: '18px' }}>Dashboard Público</h3>
-            <p style={{
-              margin: 0,
-              fontSize: '14px',
-              opacity: 0.9
-            }}>
-              Ver estadísticas y buscar perros sin login
-            </p>
-          </Link>
-
-          <div
-            onClick={() => window.location.reload()}
-            style={{
-              padding: '24px',
-              background: 'rgba(255,255,255,0.1)',
-              borderRadius: '12px',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255,255,255,0.2)',
-              cursor: 'pointer',
-              transition: 'background 0.3s',
-            }}
-            onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
-            onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-          >
-            <p style={{
-              marginTop: 15,
-              margin: '0 0 50px 0',
-              fontSize: '16px',
-              fontWeight: '500'
-            }}>
-              Inicia sesión o regístrate para comenzar
-            </p>
-            <p style={{
-              margin: 0,
-              fontSize: '14px',
-              opacity: 0.8
-            }}>
-              El modal de autenticación aparecerá automáticamente
-            </p>
-          </div>
-
+            🔐 Inicia sesión para acceder al registro completo
+          </p>
+          <p style={{
+            margin: 0,
+            fontSize: '14px',
+            opacity: 0.8
+          }}>
+            El modal de autenticación aparecerá automáticamente
+          </p>
         </div>
       </div>
     </div>

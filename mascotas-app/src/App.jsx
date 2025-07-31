@@ -6,6 +6,7 @@ import WelcomePage from "./components/WelcomePage";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Header from "./components/Header";
 import AuthModal from "./components/AuthModal";
+import QuickNav from "./components/QuickNav";
 import { useState, useEffect } from "react";
 
 function AppContent() {
@@ -26,28 +27,62 @@ function AppContent() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
         fontSize: '18px',
-        color: '#666'
+        flexDirection: 'column',
+        gap: '20px'
       }}>
-        Cargando...
+        <div className="loading-spinner"></div>
+        <div style={{ animation: 'fadeIn 0.5s ease-in' }}>
+          Cargando aplicación...
+        </div>
       </div>
     );
   }
 
   return (
-    <>
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      transition: 'all 0.3s ease'
+    }}>
       <Header />
-      <div style={{ paddingTop: isAuthenticated ? '80px' : '0' }}>
+      <main style={{ 
+        paddingTop: isAuthenticated ? '80px' : '0',
+        animation: 'fadeIn 0.5s ease-in'
+      }}>
         <Routes>
-          <Route path="/public" element={<PublicDashboard />} />
-          <Route path="/" element={isAuthenticated ? <Dashboard /> : <WelcomePage />} />
+          <Route 
+            path="/public" 
+            element={
+              <div style={{ animation: 'slideIn 0.5s ease-in' }}>
+                <PublicDashboard />
+              </div>
+            } 
+          />
+          <Route 
+            path="/" 
+            element={
+              isAuthenticated ? (
+                <div style={{ animation: 'slideIn 0.5s ease-in' }}>
+                  <Dashboard />
+                </div>
+              ) : (
+                <div style={{ animation: 'fadeIn 0.5s ease-in' }}>
+                  <WelcomePage />
+                </div>
+              )
+            } 
+          />
         </Routes>
-      </div>
+      </main>
       <AuthModal 
         isOpen={showAuthModal} 
         onClose={() => setShowAuthModal(false)} 
       />
-    </>
+      {isAuthenticated && <QuickNav />}
+    </div>
   );
 }
 

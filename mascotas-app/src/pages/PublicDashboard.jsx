@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Breadcrumbs from '../components/Breadcrumbs';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import { Pie, Bar } from 'react-chartjs-2';
 
@@ -119,23 +121,87 @@ export default function PublicDashboard() {
         <div style={{
           textAlign: 'center',
           marginBottom: '30px',
-          color: 'white'
+          color: 'white',
+          position: 'relative'
         }}>
-          <h1 style={{
-            fontSize: '2.5rem',
-            marginBottom: '10px',
-            textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-          }}>
-            🐕 Dashboard de Perros Registrados
-          </h1>
-          <p style={{
-            fontSize: '1.2rem',
-            opacity: 0.9
-          }}>
-            Estadísticas generales del registro canino municipal
-          </p>
+          <div style={{
+            position: 'absolute',
+            top: '-50%',
+            right: '-20%',
+            width: '200px',
+            height: '200px',
+            background: 'rgba(255, 255, 255, 0.1)',
+            borderRadius: '50%',
+            zIndex: 1
+          }} />
+          <div style={{
+            position: 'absolute',
+            bottom: '-30%',
+            left: '-10%',
+            width: '150px',
+            height: '150px',
+            background: 'rgba(255, 255, 255, 0.05)',
+            borderRadius: '50%',
+            zIndex: 1
+          }} />
+          
+          <div style={{ position: 'relative', zIndex: 2 }}>
+            <h1 style={{
+              fontSize: '2.5rem',
+              marginBottom: '10px',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+              fontWeight: 'bold'
+            }}>
+              📊 Dashboard de Perros Registrados
+            </h1>
+            <p style={{
+              fontSize: '1.2rem',
+              opacity: 0.9,
+              marginBottom: '20px'
+            }}>
+              Estadísticas generales del registro canino municipal
+            </p>
+            
+            {/* Quick Navigation */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '12px'
+            }}>
+              <Link
+                to="/"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  color: 'white',
+                  padding: '10px 20px',
+                  borderRadius: '25px',
+                  textDecoration: 'none',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.3)';
+                  e.target.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                  e.target.style.transform = 'translateY(0)';
+                }}
+              >
+                📝 Ir al Registro
+              </Link>
+            </div>
+          </div>
         </div>
 
+        {/* Breadcrumbs */}
+        <Breadcrumbs />
+        
         {/* Stats Grid */}
         <div style={{
           display: 'grid',
@@ -360,7 +426,6 @@ export default function PublicDashboard() {
                       <p><strong>Edad:</strong> {perro.edad ? perro.edad + ' años' : 'No especificada'}</p>
                       <p><strong>Comportamiento:</strong> {perro.comportamiento || 'No especificado'}</p>
                       <p><strong>Ubicación:</strong> {perro.ubicacion || 'No especificada'}</p>
-                      <p><strong>Dueño:</strong> {perro.duenio || 'No especificado'}</p>
                     </div>
                   </div>
                 ))}
