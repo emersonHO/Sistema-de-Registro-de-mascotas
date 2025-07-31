@@ -10,8 +10,24 @@ const login = async (email, password) => {
 
 const logout = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("userInfo");
 };
 
 const getToken = () => localStorage.getItem("token");
 
-export default { login, logout, getToken };
+const getUserInfo = () => {
+  const userInfo = localStorage.getItem("userInfo");
+  return userInfo ? JSON.parse(userInfo) : null;
+};
+
+const setUserInfo = (userInfo) => {
+  localStorage.setItem("userInfo", JSON.stringify(userInfo));
+};
+
+const register = async (email, password) => {
+  const res = await axios.post(`${API}/register`, { email, password });
+  localStorage.setItem("token", res.data.token);
+  return res.data;
+};
+
+export default { login, logout, getToken, getUserInfo, setUserInfo, register };

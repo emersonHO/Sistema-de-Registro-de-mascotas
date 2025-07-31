@@ -1,6 +1,6 @@
 spring:
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/perrosdb
+    url: r2dbc:mysql://localhost:3306/perrosbd
     username: root
     password: admin
   sql:

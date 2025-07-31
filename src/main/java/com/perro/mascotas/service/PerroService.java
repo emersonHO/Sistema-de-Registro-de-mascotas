@@ -30,4 +30,26 @@ public class PerroService {
     public Mono<Perro> obtenerPorId(Long id) {
         return repo.findById(id);
     }
+
+    public Flux<Perro> listarPorUsuario(Long usuarioId) {
+        return repo.findAllByUsuarioId(usuarioId);
+    }
+
+    public Mono<Perro> actualizar(Long id, Long usuarioId, Perro nuevoPerro) {
+        return repo.findByIdAndUsuarioId(id, usuarioId)
+            .flatMap(perro -> {
+                perro.setNombre(nuevoPerro.getNombre());
+                perro.setRaza(nuevoPerro.getRaza());
+                perro.setTamano(nuevoPerro.getTamano());
+                perro.setUbicacion(nuevoPerro.getUbicacion());
+                perro.setComportamiento(nuevoPerro.getComportamiento());
+                perro.setDuenio(nuevoPerro.getDuenio());
+                return repo.save(perro);
+            });
+    }
+
+    public Mono<Void> eliminarPorUsuario(Long id, Long usuarioId) {
+        return repo.findByIdAndUsuarioId(id, usuarioId)
+            .flatMap(perro -> repo.deleteById(perro.getId()));
+    }
 }
