@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function WelcomePage() {
   return (
     <div style={{
@@ -88,6 +90,34 @@ export default function WelcomePage() {
             </p>
           </div>
 
+          <Link
+            to="/public"
+            style={{
+              padding: '24px',
+              background: 'rgba(255,255,255,0.1)',
+              borderRadius: '12px',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              cursor: 'pointer',
+              transition: 'background 0.3s',
+              textDecoration: 'none',
+              color: 'white',
+              display: 'block'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
+            onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+          >
+            <div style={{ fontSize: '32px', marginBottom: '12px' }}>📊</div>
+            <h3 style={{ margin: '0 0 8px 0', fontSize: '18px' }}>Dashboard Público</h3>
+            <p style={{
+              margin: 0,
+              fontSize: '14px',
+              opacity: 0.9
+            }}>
+              Ver estadísticas y buscar perros sin login
+            </p>
+          </Link>
+
           <div
             onClick={() => window.location.reload()}
             style={{
@@ -96,7 +126,7 @@ export default function WelcomePage() {
               borderRadius: '12px',
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(255,255,255,0.2)',
-              cursor: 'pointer', // indica que es clickeable
+              cursor: 'pointer',
               transition: 'background 0.3s',
             }}
             onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}

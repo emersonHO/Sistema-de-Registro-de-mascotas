@@ -1,5 +1,7 @@
+import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
+import PublicDashboard from "./pages/PublicDashboard";
 import WelcomePage from "./components/WelcomePage";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Header from "./components/Header";
@@ -36,7 +38,10 @@ function AppContent() {
     <>
       <Header />
       <div style={{ paddingTop: isAuthenticated ? '80px' : '0' }}>
-        {isAuthenticated ? <Dashboard /> : <WelcomePage />}
+        <Routes>
+          <Route path="/public" element={<PublicDashboard />} />
+          <Route path="/" element={isAuthenticated ? <Dashboard /> : <WelcomePage />} />
+        </Routes>
       </div>
       <AuthModal 
         isOpen={showAuthModal} 
@@ -48,8 +53,10 @@ function AppContent() {
 
 export default function App() {
   return (
+    <BrowserRouter>
       <AuthProvider>
         <AppContent />
       </AuthProvider>
+    </BrowserRouter>
   );
 }

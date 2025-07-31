@@ -44,6 +44,7 @@ public class PerroService {
                 perro.setUbicacion(nuevoPerro.getUbicacion());
                 perro.setComportamiento(nuevoPerro.getComportamiento());
                 perro.setDuenio(nuevoPerro.getDuenio());
+                perro.setEdad(nuevoPerro.getEdad());
                 return repo.save(perro);
             });
     }

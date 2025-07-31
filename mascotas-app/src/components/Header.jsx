@@ -1,4 +1,5 @@
 import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const { user, logout } = useAuth();
@@ -47,6 +48,29 @@ export default function Header() {
         }}>
           {user.name || user.email}
         </span>
+        <Link
+          to="/public"
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#667eea',
+            cursor: 'pointer',
+            padding: '4px 8px',
+            borderRadius: '4px',
+            fontSize: '12px',
+            transition: 'all 0.2s ease',
+            textDecoration: 'none',
+            fontWeight: '500'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = '#f0f0f0';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = 'none';
+          }}
+        >
+          Dashboard Público
+        </Link>
         <button
           onClick={logout}
           style={{

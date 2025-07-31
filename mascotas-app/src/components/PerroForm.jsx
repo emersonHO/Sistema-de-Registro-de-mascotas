@@ -8,20 +8,21 @@ export default function PerroForm({ onAdd }) {
   const [ubicacion, setUbicacion] = useState("");
   const [comportamiento, setComportamiento] = useState("");
   const [duenio, setDuenio] = useState("");
+  const [edad, setEdad] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!nombre || !raza || !tamano || !ubicacion || !comportamiento || !duenio) {
+    if (!nombre || !raza || !tamano || !ubicacion || !comportamiento || !duenio || !edad) {
       setError("Todos los campos son obligatorios");
       return;
     }
 
     setLoading(true);
     try {
-      const nuevaPerro = { nombre, raza, tamano, ubicacion, comportamiento, duenio };
+      const nuevaPerro = { nombre, raza, tamano, ubicacion, comportamiento, duenio, edad };
       const res = await addPerro(nuevaPerro);
       onAdd(res.data); // actualizar lista
       setNombre("");
@@ -30,6 +31,7 @@ export default function PerroForm({ onAdd }) {
       setUbicacion("");
       setComportamiento("");
       setDuenio("");
+      setEdad("");
       setSuccess("Perro registrado exitosamente");
     } catch (err) {
       setError("Error al registrar el perro");
@@ -143,6 +145,21 @@ export default function PerroForm({ onAdd }) {
             value={duenio} 
             onChange={(e) => setDuenio(e.target.value)} 
             placeholder="Nombre del dueño" 
+            required 
+            style={{ 
+              padding: '12px 16px', 
+              borderRadius: '8px', 
+              border: "1px solid #e1e5e9",
+              fontSize: '14px',
+              transition: 'border-color 0.2s ease'
+            }}
+            onFocus={(e) => e.target.style.borderColor = '#667eea'}
+            onBlur={(e) => e.target.style.borderColor = '#e1e5e9'}
+          />
+          <input 
+            value={edad} 
+            onChange={(e) => setEdad(e.target.value)} 
+            placeholder="Edad del perro (en años)" 
             required 
             style={{ 
               padding: '12px 16px', 

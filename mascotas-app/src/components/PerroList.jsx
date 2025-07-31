@@ -7,7 +7,7 @@ export default function PerroList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [editId, setEditId] = useState(null);
-  const [editData, setEditData] = useState({ nombre: "", raza: "", tamano: "", ubicacion: "", comportamiento: "", duenio: "" });
+  const [editData, setEditData] = useState({ nombre: "", raza: "", tamano: "", ubicacion: "", comportamiento: "", duenio: "", edad: "" });
 
   const cargar = async () => {
     setLoading(true);
@@ -37,12 +37,12 @@ export default function PerroList() {
 
   const iniciarEdicion = (h) => {
     setEditId(h.id);
-    setEditData({ nombre: h.nombre, raza: h.raza, tamano: h.tamano, ubicacion: h.ubicacion, comportamiento: h.comportamiento, duenio: h.duenio });
+    setEditData({ nombre: h.nombre, raza: h.raza, tamano: h.tamano, ubicacion: h.ubicacion, comportamiento: h.comportamiento, duenio: h.duenio, edad: h.edad });
   };
 
   const cancelarEdicion = () => {
     setEditId(null);
-    setEditData({ nombre: "", raza: "", tamano: "", ubicacion: "", comportamiento: "", duenio: "" });
+    setEditData({ nombre: "", raza: "", tamano: "", ubicacion: "", comportamiento: "", duenio: "", edad: "" });
   };
 
   const guardarEdicion = async (id) => {
@@ -194,6 +194,17 @@ export default function PerroList() {
                         fontSize: '14px'
                       }}
                     />
+                    <input 
+                      value={editData.edad} 
+                      onChange={e => setEditData({ ...editData, edad: e.target.value })} 
+                      placeholder="Edad"
+                      style={{ 
+                        padding: '12px 16px', 
+                        borderRadius: '8px', 
+                        border: "1px solid #e1e5e9",
+                        fontSize: '14px'
+                      }}
+                    />
                   </div>
                   <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
                     <button 
@@ -259,6 +270,10 @@ export default function PerroList() {
                       <div>
                         <strong style={{ color: '#666', fontSize: '12px', textTransform: 'uppercase' }}>Dueño:</strong>
                         <p style={{ margin: '4px 0 0 0', fontSize: '14px' }}>{h.duenio}</p>
+                      </div>
+                      <div>
+                        <strong style={{ color: '#666', fontSize: '12px', textTransform: 'uppercase' }}>Edad:</strong>
+                        <p style={{ margin: '4px 0 0 0', fontSize: '14px' }}>{h.edad}</p>
                       </div>
                     </div>
                   </div>

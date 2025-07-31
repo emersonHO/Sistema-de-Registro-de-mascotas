@@ -16,5 +16,6 @@ public class Perro {
     private String ubicacion;
     private String comportamiento;
     private String duenio;
+    private Integer edad;
     private Long usuarioId;
 }
